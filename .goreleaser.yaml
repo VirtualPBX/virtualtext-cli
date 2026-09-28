@@ -1,0 +1,17 @@
+version: 2
+project_name: vt
+builds:
+  - id: vt
+    main: ./cmd/vt
+    binary: vt
+    env: [CGO_ENABLED=0]
+    goos: [linux, darwin]
+    goarch: [amd64, arm64]
+archives:
+  - name_template: "{{ .Binary }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+checksum:
+  name_template: checksums.txt
+release:
+  github:
+    owner: VirtualPBX
+    name: virtualtext-cli
