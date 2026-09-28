@@ -71,9 +71,12 @@ func authCmd() *cobra.Command {
 			if host == "" {
 				fail(fmt.Errorf("--host is required, e.g. https://use.virtualtext.app"))
 			}
+			if err := auth.ValidateHost(host); err != nil {
+				fail(err)
+			}
 			if token == "" {
 				var err error
-				token, err = auth.WaitForToken(host, auth.RandomState(), 5*time.Minute)
+				token, err = auth.Login(host, auth.RandomState(), 5*time.Minute)
 				if err != nil {
 					fail(err)
 				}

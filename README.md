@@ -14,7 +14,7 @@ curl -fsSL https://raw.githubusercontent.com/VirtualPBX/virtualtext-cli/main/ins
 vt auth login --host https://use.virtualtext.app
 ```
 
-A browser window asks an admin to Allow. The token is stored in `~/.config/virtualtext/config.yaml` (mode 0600).
+A browser window asks an admin to Allow. The CLI receives a one-time code (never the API token in the URL), exchanges it at `POST /cli/token`, and stores the token in `~/.config/virtualtext/config.yaml` (mode 0600). Host must be HTTPS.
 
 Already have a key?
 
